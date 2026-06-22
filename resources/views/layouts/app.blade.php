@@ -25,7 +25,7 @@
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="{{ route('excellencial.home') }}" class="group flex flex-col gap-0.5">
                 <span class="font-display text-xl font-light tracking-wide text-highlight sm:text-2xl">Excellencial</span>
-                <span class="text-[10px] font-medium uppercase tracking-[0.25em] text-slate-400">Quality control partner · Indonesia</span>
+                <span class="text-[10px] font-medium uppercase tracking-[0.25em] text-slate-400">Your Eyes In Indonesia</span>
             </a>
 
             <nav class="flex items-center gap-4 lg:gap-6" aria-label="Primary">

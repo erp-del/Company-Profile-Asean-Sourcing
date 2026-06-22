@@ -29,4 +29,19 @@ class ArticleController extends Controller
 
         return view('articles.show', compact('article'));
     }
+
+    /**
+     * @return Collection<int, array<string, mixed>>
+     */
+    protected function aseanArticles(): Collection
+    {
+        return collect(config('asean_articles', []));
+    }
+
+    public function aseanIndex(): View
+    {
+        $articles = $this->aseanArticles()->sortByDesc('published_at')->values();
+
+        return view('asean.assist.articles', compact('articles'));
+    }
 }

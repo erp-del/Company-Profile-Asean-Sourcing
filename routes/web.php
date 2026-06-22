@@ -13,6 +13,7 @@ Route::get('/', fn () => view('asean.gateway'))->name('asean.home');
 Route::get('/assist', fn () => view('asean.assist.index'))->name('asean.assist');
 Route::get('/assist/quality-programs', fn () => view('asean.assist.quality'))->name('asean.assist.quality');
 Route::get('/assist/factory-network', fn () => view('asean.assist.factory'))->name('asean.assist.factory');
+Route::get('/assist/articles', [ArticleController::class, 'aseanIndex'])->name('asean.assist.articles');
 
 Route::redirect('/retail', '/excellencial', 302)->name('asean.retail');
 
@@ -53,3 +54,5 @@ Route::get('/services/shipping-integrity-checks', function () {
 Route::get('/services/analytics-insights', function () {
     return view('services.analytics-insights');
 });
+Route::get('/catalogue', fn () => view('asean.catalogue'))->name('asean.catalogue');
+

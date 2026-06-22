@@ -117,6 +117,7 @@
                             </div>
 
                             <span class="sr-only">{{ $card['sr'] }}</span>
+                            
                         </a>
                     @endforeach
                 </div>
@@ -124,3 +125,4 @@
         </div>
     </div>
 @endsection
+

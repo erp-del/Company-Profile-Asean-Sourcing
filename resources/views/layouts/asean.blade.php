@@ -19,10 +19,10 @@
                 <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">Your vision, our expertise</span>
             </a>
             <nav class="hidden items-center gap-6 md:flex" aria-label="Division">
-                <a href="{{ route('asean.assist') }}" class="text-sm font-medium text-slate-600 hover:text-asean-blue">Assist</a>
-                <a href="{{ route('asean.retail') }}" class="text-sm font-medium text-slate-600 hover:text-asean-blue">Retail</a>
-                <a href="{{ route('asean.projects') }}" class="text-sm font-medium text-slate-600 hover:text-asean-blue">Projects</a>
-                <a href="{{ route('asean.home') }}" class="rounded-full bg-asean-blue px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-sm hover:bg-asean-blue-dark">Gateway</a>
+                <a href="{{ route('asean.assist') }}" class="text-sm font-medium text-slate-600 hover:text-asean-blue">Asean Sourcing Projects</a>
+                <a href="{{ route('asean.retail') }}" class="text-sm font-medium text-slate-600 hover:text-asean-blue">Excellencial</a>
+                <a href="{{ route('asean.projects') }}" class="text-sm font-medium text-slate-600 hover:text-asean-blue">Asean Sourcing Retail</a>
+                <a href="{{ route('asean.home') }}" class="rounded-full border-2 border-black bg-asean-blue px-4 py-2 text-xs font-bold uppercase tracking-wider text-asean-gold shadow-sm hover:bg-asean-blue-dark">Gateway</a>
             </nav>
             <a href="{{ route('asean.home') }}" class="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-asean-blue md:hidden">Menu</a>
         </div>

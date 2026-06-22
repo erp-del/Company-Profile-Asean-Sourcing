@@ -14,12 +14,13 @@
             <h1 class="font-asean-display mt-6 max-w-4xl text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
                 Wholesale supply &amp; hospitality FF&amp;E—under <span class="text-asean-sky">one commercial contract</span>
             </h1>
-            <p class="mt-8 max-w-2xl text-lg text-white/90">
+            <p class="mt-8 max-w-2xl text-lg text-black/90">
                 We supply wholesalers, retailers, and finished FF&amp;E as a principal—owning procurement, production control, QC, consolidation, and delivery. Structure inspired by the positioning on <a href="https://asean-sourcing.com/" class="font-semibold text-white underline underline-offset-4 hover:text-asean-sky" target="_blank" rel="noopener noreferrer">asean-sourcing.com</a> (reference only).
             </p>
             <div class="mt-10 flex flex-wrap gap-4">
-                <a href="{{ route('asean.projects.procurement') }}" class="rounded-full bg-white px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-asean-blue shadow-xl transition hover:bg-asean-sky">Procurement &amp; delivery</a>
-                <a href="{{ route('asean.projects.hospitality') }}" class="rounded-full border-2 border-white/80 px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-white/10">Hospitality FF&amp;E</a>
+                <a href="{{ route('asean.projects.procurement') }}" class="rounded-full bg-white px-8 py-3.5 border-2 border-black text-sm font-bold uppercase tracking-wider text-black shadow-xl transition hover:bg-asean-sky">Procurement &amp; delivery</a>
+                <a href="{{ route('asean.projects.hospitality') }}" class="rounded-full bg-white border-2 border-black/80 px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-black transition hover:bg-white/10">Hospitality FF&amp;E</a>
+                <a href="{{ route('asean.catalogue') }}" class="rounded-full border-2 border-asean-gold bg-asean-gold/20 px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-asean-gold transition hover:bg-asean-gold hover:text-white">Product Catalogue</a>
             </div>
         </div>
     </section>
@@ -103,9 +104,9 @@
         </div>
     </section>
 
-    <section class="bg-asean-blue py-16 text-center text-white">
+    <section class="bg-asean-blue py-16 text-center text-black">
         <p class="font-asean-display text-2xl font-semibold">Ready for a single-contract program?</p>
         <a href="mailto:projects@aseansourcing.demo" class="mt-6 inline-block rounded-full border-2 border-white px-8 py-3 text-sm font-bold uppercase tracking-wider hover:bg-white hover:text-asean-blue">Contact projects desk</a>
-        <p class="mt-4 text-xs text-white/60">Dummy email — configure in production.</p>
+        <p class="mt-4 text-xs text-black/60">Dummy email — configure in production.</p>
     </section>
 @endsection
