@@ -39,6 +39,103 @@
     .text-readable-light {
         color: #64748b;
     }
+
+    /* Team Section Styles */
+    .team-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .team-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .team-card {
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    .team-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .team-card:hover {
+        transform: translateY(-20px) scale(1.08);
+        box-shadow: 0 35px 70px -15px rgba(0, 29, 57, 0.35);
+        border-color: rgba(152, 94, 35, 0.5);
+    }
+    .team-card:hover .profile-image {
+        transform: scale(1.2) rotate(8deg);
+    }
+    .team-card:hover .profile-ring {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+    .team-card:hover h4 {
+        color: #985e23;
+        transform: translateY(-3px);
+    }
+    .team-card h4 {
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile-image {
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile-ring {
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .department-header {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .department-header.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .modal-overlay {
+        background: rgba(0, 29, 57, 0.85);
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+    .modal-overlay.active {
+        opacity: 1;
+    }
+    .modal-content {
+        transform: scale(0.5) translateY(60px);
+        opacity: 0;
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease-out;
+    }
+    .modal-content.active {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    @keyframes pulse-ring {
+        0% {
+            box-shadow: 0 0 0 0 rgba(152, 94, 35, 0.6);
+        }
+        50% {
+            box-shadow: 0 0 0 25px rgba(152, 94, 35, 0.15);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(152, 94, 35, 0);
+        }
+    }
+    .team-card:hover .profile-ring {
+        animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(-20px) scale(1.08);
+        }
+        50% {
+            transform: translateY(-28px) scale(1.08);
+        }
+    }
+    .team-card:hover {
+        animation: float 2.5s ease-in-out infinite;
+    }
 </style>
 @endpush
 
@@ -537,6 +634,250 @@
         </div>
     </section>
 
+    <!-- Our Team Section -->
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="mx-auto max-w-7xl">
+            <div class="team-section text-center mb-20">
+                <p class="text-sm font-bold uppercase tracking-[0.3em] text-asean-gold mb-4">Our Team</p>
+                <h2 class="font-asean-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-readable mb-6">
+                    Meet Our Team
+                </h2>
+                <p class="text-lg text-readable-light max-w-3xl mx-auto leading-relaxed">
+                    Our dedicated professionals bring expertise across all aspects of procurement, quality assurance, and operational excellence.
+                </p>
+            </div>
+
+            <!-- Department 1: Founder & CEO -->
+            <div class="mb-24">
+                <div class="department-header mb-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-px flex-1 bg-gradient-to-r from-transparent to-asean-gold/30"></div>
+                        <h3 class="font-asean-display text-2xl lg:text-3xl font-semibold text-asean-navy">Founder & CEO</h3>
+                        <div class="h-px flex-1 bg-gradient-to-l from-transparent to-asean-gold/30"></div>
+                    </div>
+                    <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
+                        Emeric Beyeler is the Founder & CEO of Asean Sourcing, a Southeast Asia–based procurement and trading company supplying finished FF&E and OS&E for hospitality, residential, and commercial projects worldwide. With a background in international export, sourcing, and commercial leadership, Emeric specializes in building accountable supply chains, managing production risk, and delivering under a single commercial contract. French by origin and based in Indonesia, he bridges European standards with Asian manufacturing execution.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('emeric')" style="transition-delay: 0ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-asean-gold to-amber-600 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/emeric.png') }}" alt="Emeric Beyeler" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Emeric Beyeler</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Founder & CEO</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department 2: Business Development -->
+            <div class="mb-24">
+                <div class="department-header mb-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-px flex-1 bg-gradient-to-r from-transparent to-asean-gold/30"></div>
+                        <h3 class="font-asean-display text-2xl lg:text-3xl font-semibold text-asean-navy">Business Development</h3>
+                        <div class="h-px flex-1 bg-gradient-to-l from-transparent to-asean-gold/30"></div>
+                    </div>
+                    <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
+                        Integrating marketing, sales, and merchandising, the Business Development team manages client acquisition, project development, and product alignment to support scalable growth.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('citra')" style="transition-delay: 0ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/citra.png') }}" alt="Citra" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Citra</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('milen')" style="transition-delay: 100ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/milen.png') }}" alt="Milen" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Milen</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('dimas')" style="transition-delay: 200ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-green-500 to-green-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/dimas.JPG') }}" alt="Dimas" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Dimas</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('tya')" style="transition-delay: 300ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-pink-500 to-pink-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/tya.JPG') }}" alt="Tya" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Tya</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department 3: HRGA, Accounting & IT -->
+            <div class="mb-24">
+                <div class="department-header mb-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-px flex-1 bg-gradient-to-r from-transparent to-asean-gold/30"></div>
+                        <h3 class="font-asean-display text-2xl lg:text-3xl font-semibold text-asean-navy">HRGA, Accounting & IT</h3>
+                        <div class="h-px flex-1 bg-gradient-to-l from-transparent to-asean-gold/30"></div>
+                    </div>
+                    <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
+                        This department oversees finance, human resources, and internal IT systems, ensuring compliance, operational efficiency, and stable business support.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center max-w-3xl mx-auto">
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('nadya')" style="transition-delay: 0ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/nadya.JPG') }}" alt="Nadya" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Nadya</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">HRGA, Accounting & IT</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('valen')" style="transition-delay: 100ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/valen.JPG') }}" alt="Valen" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Valen</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">HRGA, Accounting & IT</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department 4: Operations -->
+            <div class="mb-16">
+                <div class="department-header mb-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-px flex-1 bg-gradient-to-r from-transparent to-asean-gold/30"></div>
+                        <h3 class="font-asean-display text-2xl lg:text-3xl font-semibold text-asean-navy">Operations</h3>
+                        <div class="h-px flex-1 bg-gradient-to-l from-transparent to-asean-gold/30"></div>
+                    </div>
+                    <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
+                        The Operations Department ensures that every project moves from confirmation to delivery with control and discipline.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('irul')" style="transition-delay: 0ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/irul.png') }}" alt="Irul" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Irul</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('jody')" style="transition-delay: 100ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-red-500 to-red-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/dino.png') }}" alt="Jody" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Jody</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('agus')" style="transition-delay: 200ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/agus.jpeg') }}" alt="Agus" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Agus</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('antok')" style="transition-delay: 300ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-lime-500 to-lime-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/antok.jpeg') }}" alt="Antok" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Antok</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('novan')" style="transition-delay: 400ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-rose-500 to-rose-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/novan.JPG') }}" alt="Novan" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Novan</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('onyie')" style="transition-delay: 500ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-violet-500 to-violet-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/Onyie.png') }}" alt="Onyie" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Onyie</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('isti')" style="transition-delay: 600ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/isti.jpeg') }}" alt="Isti" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Isti</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                    <div class="team-card bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" onclick="openModal('etha')" style="transition-delay: 700ms;">
+                        <div class="relative mb-5">
+                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 blur-lg opacity-30"></div>
+                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                <img src="{{ asset('media/gateway/Etha.JPG') }}" alt="Etha" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Etha</h4>
+                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Member Modal -->
+    <div id="teamModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0" onclick="closeModal()"></div>
+        <div class="relative flex items-center justify-center min-h-screen p-4">
+            <div class="modal-content bg-white rounded-3xl shadow-2xl max-w-lg w-full p-10 relative">
+                <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 transition-colors z-10">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- CTA Section -->
     <section id="contact" class="py-20 bg-white px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-4xl text-center">
@@ -556,4 +897,224 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe team section
+            const teamSection = document.querySelector('.team-section');
+            if (teamSection) {
+                observer.observe(teamSection);
+            }
+
+            // Observe department headers
+            const departmentHeaders = document.querySelectorAll('.department-header');
+            departmentHeaders.forEach(header => {
+                observer.observe(header);
+            });
+
+            // Observe team cards with staggered delay
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach((card, index) => {
+                observer.observe(card);
+            });
+        });
+
+        const teamMembers = {
+            emeric: {
+                name: 'Emeric Beyeler',
+                role: 'Founder & CEO',
+                department: 'Founder & CEO',
+                bio: 'Emeric Beyeler is the Founder & CEO of Asean Sourcing, a Southeast Asia–based procurement and trading company supplying finished FF&E and OS&E for hospitality, residential, and commercial projects worldwide. With a background in international export, sourcing, and commercial leadership, Emeric specializes in building accountable supply chains, managing production risk, and delivering under a single commercial contract. French by origin and based in Indonesia, he bridges European standards with Asian manufacturing execution.',
+                color: 'from-asean-gold to-amber-600',
+                image: '{{ asset("media/gateway/emeric.png") }}'
+            },
+            citra: {
+                name: 'Citra',
+                role: 'Business Development',
+                department: 'Business Development',
+                bio: 'Citra is a key member of the Business Development team, specializing in client acquisition and relationship management. With expertise in marketing and sales integration, Citra helps drive scalable growth for Asean Sourcing by identifying new opportunities and building lasting partnerships with clients across the hospitality and commercial sectors.',
+                color: 'from-blue-500 to-blue-700',
+                image: '{{ asset("media/gateway/citra.png") }}'
+            },
+            milen: {
+                name: 'Milen',
+                role: 'Business Development',
+                department: 'Business Development',
+                bio: 'Milen brings strong commercial acumen to the Business Development team, focusing on project development and product alignment. With a keen understanding of market trends and client needs, Milen ensures that Asean Sourcing delivers tailored solutions that meet the specific requirements of each project.',
+                color: 'from-purple-500 to-purple-700',
+                image: '{{ asset("media/gateway/milen.png") }}'
+            },
+            dimas: {
+                name: 'Dimas',
+                role: 'Business Development',
+                department: 'Business Development',
+                bio: 'Dimas specializes in merchandising and sales strategy within the Business Development team. His expertise in product positioning and market analysis helps Asean Sourcing maintain competitive advantage while delivering exceptional value to clients in the procurement and sourcing space.',
+                color: 'from-green-500 to-green-700',
+                image: '{{ asset("media/gateway/dimas.JPG") }}'
+            },
+            tya: {
+                name: 'Tya',
+                role: 'Business Development',
+                department: 'Business Development',
+                bio: 'Tya is a dynamic member of the Business Development team, focusing on client engagement and project coordination. With excellent communication skills and a deep understanding of the hospitality industry, Tya ensures smooth collaboration between clients and the Asean Sourcing team.',
+                color: 'from-pink-500 to-pink-700',
+                image: '{{ asset("media/gateway/tya.JPG") }}'
+            },
+            nadya: {
+                name: 'Nadya',
+                role: 'HRGA, Accounting & IT',
+                department: 'HRGA, Accounting & IT',
+                bio: 'Nadya oversees human resources and financial operations at Asean Sourcing. With expertise in HR management and accounting, she ensures compliance, operational efficiency, and stable business support across all departments. Her attention to detail helps maintain the company\'s strong organizational foundation.',
+                color: 'from-indigo-500 to-indigo-700',
+                image: '{{ asset("media/gateway/nadya.JPG") }}'
+            },
+            valen: {
+                name: 'Valen',
+                role: 'HRGA, Accounting & IT',
+                department: 'HRGA, Accounting & IT',
+                bio: 'Valen manages internal IT systems and supports financial operations within the HRGA, Accounting & IT department. His technical expertise ensures that Asean Sourcing maintains robust digital infrastructure and efficient processes to support the company\'s growing operations.',
+                color: 'from-teal-500 to-teal-700',
+                image: '{{ asset("media/gateway/valen.JPG") }}'
+            },
+            irul: {
+                name: 'Irul',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Irul is a seasoned operations professional who ensures projects move smoothly from confirmation to delivery. With extensive experience in logistics and supply chain management, Irul maintains control and discipline throughout the production and delivery process.',
+                color: 'from-orange-500 to-orange-700',
+                image: '{{ asset("media/gateway/irul.png") }}'
+            },
+            jody: {
+                name: 'Jody',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Jody specializes in production coordination and quality control within the Operations Department. His hands-on approach ensures that every project meets the highest standards while adhering to strict timelines and delivery schedules.',
+                color: 'from-red-500 to-red-700',
+                image: '{{ asset("media/gateway/dino.png") }}'
+            },
+            agus: {
+                name: 'Agus',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Agus brings operational excellence to the team, focusing on factory coordination and production monitoring. His expertise in managing supplier relationships ensures that Asean Sourcing maintains consistent quality across all manufacturing partners.',
+                color: 'from-cyan-500 to-cyan-700',
+                image: '{{ asset("media/gateway/agus.jpeg") }}'
+            },
+            antok: {
+                name: 'Antok',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Antok is responsible for logistics coordination and shipment planning within the Operations Department. His meticulous attention to detail ensures that goods are consolidated, inspected, and delivered according to agreed schedules and specifications.',
+                color: 'from-lime-500 to-lime-700',
+                image: '{{ asset("media/gateway/antok.jpeg") }}'
+            },
+            novan: {
+                name: 'Novan',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Novan supports the Operations team with project tracking and documentation management. His organizational skills help maintain clear communication between all stakeholders and ensure that project milestones are met efficiently.',
+                color: 'from-rose-500 to-rose-700',
+                image: '{{ asset("media/gateway/novan.JPG") }}'
+            },
+            onyie: {
+                name: 'Onyie',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Onyie focuses on quality assurance and inspection coordination within the Operations Department. With a keen eye for detail, Onyie ensures that all products meet the rigorous quality standards that Asean Sourcing is known for.',
+                color: 'from-violet-500 to-violet-700',
+                image: '{{ asset("media/gateway/Onyie.png") }}'
+            },
+            isti: {
+                name: 'Isti',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Isti manages supplier communications and production follow-ups in the Operations Department. Her proactive approach helps identify and resolve potential issues before they impact project timelines or quality.',
+                color: 'from-amber-500 to-amber-700',
+                image: '{{ asset("media/gateway/isti.jpeg") }}'
+            },
+            etha: {
+                name: 'Etha',
+                role: 'Operations',
+                department: 'Operations',
+                bio: 'Etha supports the Operations team with administrative coordination and process improvement. Her efficiency-focused mindset helps streamline operations and ensure that the department maintains high productivity levels.',
+                color: 'from-emerald-500 to-emerald-700',
+                image: '{{ asset("media/gateway/Etha.JPG") }}'
+            }
+        };
+
+        function openModal(memberId) {
+            const member = teamMembers[memberId];
+            if (!member) return;
+
+            const modal = document.getElementById('teamModal');
+            const modalOverlay = modal.querySelector('.modal-overlay');
+            const modalContentContainer = modal.querySelector('.modal-content');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <div class="flex flex-col items-center text-center">
+                    <div class="relative mb-6">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br ${member.color} blur-xl opacity-30"></div>
+                        <div class="relative w-32 h-32 rounded-full overflow-hidden shadow-2xl">
+                            <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <h3 class="font-asean-display text-2xl font-semibold text-asean-navy mb-2">${member.name}</h3>
+                    <p class="text-asean-gold font-semibold mb-4 text-lg">${member.role}</p>
+                    <div class="bg-asean-gold-soft px-6 py-3 rounded-full mb-6">
+                        <span class="text-sm font-semibold text-asean-gold uppercase tracking-wider">${member.department}</span>
+                    </div>
+                    <p class="text-readable-light leading-relaxed text-base">${member.bio}</p>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            void modal.offsetWidth;
+            modalOverlay.classList.add('active');
+            modalContentContainer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('teamModal');
+            const modalOverlay = modal.querySelector('.modal-overlay');
+            const modalContentContainer = modal.querySelector('.modal-content');
+
+            modalOverlay.classList.remove('active');
+            modalContentContainer.classList.remove('active');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 600);
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 @endsection
+
+
+
+
+ 
