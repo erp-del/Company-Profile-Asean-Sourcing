@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
+    @stack('styles')
 </head>
 <body class="min-h-screen bg-white font-asean text-slate-800 antialiased">
     <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
@@ -37,5 +38,6 @@
             <p class="mt-6 text-xs">&copy; {{ date('Y') }} Asean Sourcing. Multi-site demo.</p>
         </div>
     </footer>
+    @stack('scripts')
 </body>
 </html>

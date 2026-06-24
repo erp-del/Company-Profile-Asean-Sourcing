@@ -115,13 +115,70 @@
     .team-card.visible:hover .profile-ring {
         animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
+
+    /* ==========================================
+       DEPARTMENT DROPDOWN TOGGLE
+       ========================================== */
+    .dept-toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 28px;
+        border: 2px solid rgba(152, 94, 35, 0.3);
+        border-radius: 9999px;
+        background: transparent;
+        color: #985e23;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .dept-toggle-btn:hover {
+        background: rgba(152, 94, 35, 0.08);
+        border-color: #985e23;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(152, 94, 35, 0.15);
+    }
+    .dept-toggle-btn .toggle-icon {
+        display: inline-flex;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dept-toggle-btn.active .toggle-icon {
+        transform: rotate(180deg);
+    }
+    .dept-toggle-btn.active {
+        background: rgba(152, 94, 35, 0.1);
+        border-color: #985e23;
+    }
+
+    .dept-members-wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.4s ease,
+                    visibility 0.5s ease;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+    }
+    .dept-members-wrapper.open {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        visibility: visible;
+    }
+    .dept-members-inner {
+        min-height: 0;
+        overflow: hidden;
+    }
 </style>
 @endpush
 
 @section('content')
-    <section class="relative overflow-hidden hero-gradient px-4 py-24 text-black sm:px-6 lg:px-8 lg:py-32">
+    <section class="relative overflow-hidden px-4 py-24 text-black sm:px-6 lg:px-8 lg:py-32">
+        <div class="absolute inset-0 hero-gradient -z-30"></div>
         <div class="absolute inset-0 -z-20">
-            <video class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata">
+            <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata">
                 <source src="{{ asset('media/gateway/bgvds.mp4') }}" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-asean-navy/60"></div>
@@ -638,47 +695,59 @@
                     <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
                         Integrating marketing, sales, and merchandising, the Business Development team manages client acquisition, project development, and product alignment to support scalable growth.
                     </p>
+                    <div class="text-center mt-6">
+                        <button class="dept-toggle-btn" onclick="toggleDepartment('bizdev', this)">
+                            <span>Meet the Team</span>
+                            <span class="toggle-icon">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('citra')" style="transition-delay: 0ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/citra.png') }}" alt="Citra" class="w-full h-full object-cover">
+                <div id="dept-bizdev" class="dept-members-wrapper">
+                    <div class="dept-members-inner">
+                        <div class="flex flex-wrap justify-center gap-6 pt-2">
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('citra')" style="transition-delay: 0ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/citra.png') }}" alt="Citra" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Citra</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('milen')" style="transition-delay: 100ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/milen.png') }}" alt="Milen" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Milen</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('dimas')" style="transition-delay: 200ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-green-500 to-green-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/dimas.JPG') }}" alt="Dimas" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Dimas</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('tya')" style="transition-delay: 300ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-pink-500 to-pink-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/tya.JPG') }}" alt="Tya" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Tya</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
                             </div>
                         </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Citra</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('milen')" style="transition-delay: 100ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/milen.png') }}" alt="Milen" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Milen</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('dimas')" style="transition-delay: 200ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-green-500 to-green-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/dimas.JPG') }}" alt="Dimas" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Dimas</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('tya')" style="transition-delay: 300ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-pink-500 to-pink-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/tya.JPG') }}" alt="Tya" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Tya</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Business Development</p>
                     </div>
                 </div>
             </div>
@@ -693,27 +762,39 @@
                     <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
                         This department oversees finance, human resources, and internal IT systems, ensuring compliance, operational efficiency, and stable business support.
                     </p>
-                </div>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('nadya')" style="transition-delay: 0ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/nadya.JPG') }}" alt="Nadya" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Nadya</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">HRGA, Accounting & IT</p>
+                    <div class="text-center mt-6">
+                        <button class="dept-toggle-btn" onclick="toggleDepartment('hrga', this)">
+                            <span>Meet the Team</span>
+                            <span class="toggle-icon">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
                     </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('valen')" style="transition-delay: 100ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/valen.JPG') }}" alt="Valen" class="w-full h-full object-cover">
+                </div>
+                <div id="dept-hrga" class="dept-members-wrapper">
+                    <div class="dept-members-inner">
+                        <div class="flex flex-wrap justify-center gap-6 pt-2">
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('nadya')" style="transition-delay: 0ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/nadya.JPG') }}" alt="Nadya" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Nadya</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">HRGA, Accounting & IT</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('valen')" style="transition-delay: 100ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/valen.JPG') }}" alt="Valen" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Valen</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">HRGA, Accounting & IT</p>
                             </div>
                         </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Valen</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">HRGA, Accounting & IT</p>
                     </div>
                 </div>
             </div>
@@ -728,87 +809,99 @@
                     <p class="text-readable-light text-center max-w-4xl mx-auto leading-relaxed">
                         The Operations Department ensures that every project moves from confirmation to delivery with control and discipline.
                     </p>
+                    <div class="text-center mt-6">
+                        <button class="dept-toggle-btn" onclick="toggleDepartment('ops', this)">
+                            <span>Meet the Team</span>
+                            <span class="toggle-icon">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('irul')" style="transition-delay: 0ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/irul.png') }}" alt="Irul" class="w-full h-full object-cover">
+                <div id="dept-ops" class="dept-members-wrapper">
+                    <div class="dept-members-inner">
+                        <div class="flex flex-wrap justify-center gap-6 pt-2">
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('irul')" style="transition-delay: 0ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/irul.png') }}" alt="Irul" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Irul</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('jody')" style="transition-delay: 100ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-red-500 to-red-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/el diablo.jpg') }}" alt="Jody" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Jody</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('agus')" style="transition-delay: 200ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/agus.jpeg') }}" alt="Agus" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Agus</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('antok')" style="transition-delay: 300ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-lime-500 to-lime-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/antok.jpeg') }}" alt="Antok" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Antok</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('novan')" style="transition-delay: 400ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-rose-500 to-rose-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/novan.JPG') }}" alt="Novan" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Novan</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('onyie')" style="transition-delay: 500ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-violet-500 to-violet-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/Onyie.png') }}" alt="Onyie" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Onyie</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('isti')" style="transition-delay: 600ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/isti.jpeg') }}" alt="Isti" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Isti</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
+                            </div>
+                            <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('etha')" style="transition-delay: 700ms;">
+                                <div class="relative mb-5">
+                                    <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 blur-lg opacity-30"></div>
+                                    <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
+                                        <img src="{{ asset('media/gateway/Etha.JPG') }}" alt="Etha" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h4 class="font-semibold text-readable text-lg text-center mb-2">Etha</h4>
+                                <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
                             </div>
                         </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Irul</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('jody')" style="transition-delay: 100ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-red-500 to-red-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/dino.png') }}" alt="Jody" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Jody</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('agus')" style="transition-delay: 200ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/agus.jpeg') }}" alt="Agus" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Agus</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('antok')" style="transition-delay: 300ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-lime-500 to-lime-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/antok.jpeg') }}" alt="Antok" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Antok</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('novan')" style="transition-delay: 400ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-rose-500 to-rose-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/novan.JPG') }}" alt="Novan" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Novan</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('onyie')" style="transition-delay: 500ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-violet-500 to-violet-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/Onyie.png') }}" alt="Onyie" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Onyie</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('isti')" style="transition-delay: 600ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/isti.jpeg') }}" alt="Isti" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Isti</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
-                    </div>
-                    <div class="team-card w-full sm:w-[280px] bg-white border border-slate-200 rounded-3xl p-6 cursor-pointer" onclick="openModal('etha')" style="transition-delay: 700ms;">
-                        <div class="relative mb-5">
-                            <div class="profile-ring absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 blur-lg opacity-30"></div>
-                            <div class="profile-image relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-xl">
-                                <img src="{{ asset('media/gateway/Etha.JPG') }}" alt="Etha" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-readable text-lg text-center mb-2">Etha</h4>
-                        <p class="text-asean-gold text-xs text-center font-semibold uppercase tracking-wider">Operations</p>
                     </div>
                 </div>
             </div>
@@ -848,6 +941,62 @@
     </section>
 
     <script>
+        // Hero video initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                heroVideo.play().catch(function(error) {
+                    console.log('Video autoplay failed:', error);
+                    // Video will still show the poster or background color
+                });
+            }
+        });
+
+        // Department dropdown toggle function
+        function toggleDepartment(deptId, btn) {
+            const wrapper = document.getElementById('dept-' + deptId);
+            if (!wrapper) return;
+
+            const isOpen = wrapper.classList.contains('open');
+            const btnTextSpan = btn.querySelector('span:first-child');
+
+            if (isOpen) {
+                // Close
+                wrapper.classList.remove('open');
+                btn.classList.remove('active');
+                if (btnTextSpan) btnTextSpan.textContent = 'Meet the Team';
+
+                // Reset card animations on close
+                const cards = wrapper.querySelectorAll('.team-card');
+                cards.forEach(card => {
+                    card.classList.remove('visible');
+                    card.style.transitionDelay = '0ms';
+                });
+            } else {
+                // Open
+                wrapper.classList.add('open');
+                btn.classList.add('active');
+                if (btnTextSpan) btnTextSpan.textContent = 'Hide Team';
+
+                // Trigger scroll-in animations for team cards inside this department
+                const cards = wrapper.querySelectorAll('.team-card');
+                cards.forEach((card, index) => {
+                    // Reset animation state
+                    card.classList.remove('visible');
+                    card.style.transitionDelay = (index * 100) + 'ms';
+
+                    // Trigger visible after a small delay to allow the container to open
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                        // Remove delay after animation completes
+                        setTimeout(() => {
+                            card.style.transitionDelay = '0ms';
+                        }, (index * 100) + 600);
+                    }, 50);
+                });
+            }
+        }
+
         // Intersection Observer for scroll animations
         document.addEventListener('DOMContentLoaded', function() {
             const observerOptions = {
@@ -882,8 +1031,13 @@
             const departmentHeaders = document.querySelectorAll('.department-header');
             departmentHeaders.forEach(header => observer.observe(header));
 
+            // Only observe team cards NOT inside dropdown wrappers (CEO section)
             const teamCards = document.querySelectorAll('.team-card');
-            teamCards.forEach(card => observer.observe(card));
+            teamCards.forEach(card => {
+                if (!card.closest('.dept-members-wrapper')) {
+                    observer.observe(card);
+                }
+            });
         });
 
         const teamMembers = {
@@ -892,7 +1046,7 @@
                 role: 'Founder & CEO',
                 department: 'Founder & CEO',
                 bio: 'Emeric Beyeler is the Founder & CEO of Asean Sourcing, a Southeast Asia–based procurement and trading company supplying finished FF&E and OS&E for hospitality, residential, and commercial projects worldwide. With a background in international export, sourcing, and commercial leadership, Emeric specializes in building accountable supply chains, managing production risk, and delivering under a single commercial contract. French by origin and based in Indonesia, he bridges European standards with Asian manufacturing execution.',
-                color: 'from-asean-gold to-amber-600',
+                color: 'from-red-500 to-red-700',
                 image: '{{ asset("media/gateway/emeric.png") }}'
             },
             citra: {
@@ -956,8 +1110,8 @@
                 role: 'Operations PPIC',
                 department: 'Operations',
                 bio: 'Jody specializes in production coordination and quality control within the Operations Department. His hands-on approach ensures that every project meets the highest standards while adhering to strict timelines and delivery schedules.',
-                color: 'from-red-500 to-red-700',
-                image: '{{ asset("media/gateway/dino.png") }}'
+                color: 'from-pink-500 to-pink-700',
+                image: '{{ asset("media/gateway/el diablo.jpg") }}'
             },
             agus: {
                 name: 'Agus',
