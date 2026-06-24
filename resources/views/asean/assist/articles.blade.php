@@ -100,18 +100,22 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="relative overflow-hidden hero-gradient px-4 py-20 text-black sm:px-6 lg:px-8 lg:py-28">
-        <!-- Pattern Overlay -->
+   <section class="relative overflow-hidden px-4 py-24 text-black sm:px-6 lg:px-8 lg:py-32">
+         <div class="absolute inset-0 -z-20">
+            <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata">
+                <source src="{{ asset('media/gateway/bgvds5.mp4') }}" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-asean-navy/60"></div>
+        </div>
         <div class="absolute inset-0 opacity-10 -z-10">
             <div class="absolute top-0 left-0 h-full w-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2LTRoLTR2NGgtNHY0aDR2NGg0di00aDR2LTRoLTR2LTR6Ii8+PC9nPjwvZz48L3N2Zz4=')]"></div>
-        </div>
-        
+</div>
         <div class="relative mx-auto max-w-7xl text-center">
             <p class="text-sm font-bold uppercase tracking-[0.3em] text-asean-gold mb-4">News & Insights</p>
             <h1 class="font-asean-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-asean-gold leading-tight mb-6">
                 Asean Sourcing Articles
             </h1>
-            <p class="text-lg text-black leading-relaxed max-w-3xl mx-auto mb-8">
+            <p class="text-lg text-white leading-relaxed max-w-3xl mx-auto mb-8">
                 Explore our latest insights on quality assurance, supply chain management, and strategic sourcing. Stay informed with industry trends and best practices.
             </p>
             
@@ -247,7 +251,7 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="py-16 bg-asean-navy px-4 sm:px-6 lg:px-8">
+    <section class="py-16 bg-asean-gold-soft px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-4xl text-center">
             <h2 class="font-asean-display text-3xl sm:text-4xl font-semibold text-black mb-4">
                 Stay Updated
@@ -258,7 +262,7 @@
             <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                 <input type="email" 
                        placeholder="Enter your email" 
-                       class="flex-1 px-6 py-4 rounded-full border-2 border-black bg-white/10 text-black placeholder-white/60 focus:outline-none focus:border-asean-gold transition-all duration-300">
+                       class="flex-1 px-6 py-4 rounded-full border-2 border-black bg-white/10 text-black placeholder-black/60 focus:outline-none focus:border-asean-gold transition-all duration-300">
                 <button class="gold-gradient px-8 py-4 rounded-full text-black font-semibold border-2 border-black hover:shadow-lg transition-all duration-300 hover:scale-105">
                     Subscribe
                 </button>
