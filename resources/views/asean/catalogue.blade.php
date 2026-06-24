@@ -79,13 +79,11 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="relative overflow-hidden hero-gradient px-4 py-24 text-white sm:px-6 lg:px-8 lg:py-32">
- <div class="absolute inset-0 -z-20">
-            <video class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata">
-                <source src="{{ asset('media/gateway/bgvds2.mp4') }}" type="video/mp4">
+   <section class="relative overflow-hidden px-4 py-24 text-black sm:px-6 lg:px-8 lg:py-32">
+         <div class="absolute inset-0 -z-20">
+            <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata">
+                <source src="{{ asset('media/gateway/bgvds5.mp4') }}" type="video/mp4">
             </video>
-            <!-- Video Overlay for text readability -->
-            <div class="absolute inset-0 bg-asean-navy/60"></div>
         </div>
         <div class="relative mx-auto max-w-7xl">        
             <div class="text-center">
@@ -193,7 +191,7 @@
 
             <!-- Load More Button -->
             <div class="text-center mt-12">
-                <button class="gold-gradient px-8 py-4 rounded-full border-2 border-black text-asean-gold font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <button class="gold-gradient px-8 py-4 rounded-full border-2 border-black text-black font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     Load More Products
                 </button>
             </div>
@@ -201,7 +199,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="contact" class="py-20 bg-white px-4 sm:px-6 lg:px-8">
+    <section id="contact" class="py-20 bg-asean-gold-soft">
         <div class="mx-auto max-w-4xl text-center">
             <h2 class="font-asean-display text-4xl sm:text-5xl font-semibold text-readable mb-6">
                 Need Custom Products?
@@ -210,10 +208,10 @@
                 Contact us to discuss custom manufacturing and product development for your specific requirements.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="/contact" class="border-2 gold-gradient px-8 py-4 rounded-full text-asean-gold font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <a href="/contact" class="border-2 gold-gradient px-8 py-4 rounded-full text-black font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     Get in Touch
                 </a>
-                <a href="{{ route('asean.projects') }}" class="border-2 border-asean-gold px-8 py-4 rounded-full text-asean-gold font-semibold hover:bg-asean-gold hover:text-white transition-all duration-300">
+                <a href="{{ route('asean.projects') }}" class="border-2 border-asean-gold px-8 py-4 rounded-full text-black font-semibold hover:bg-asean-gold hover:text-white transition-all duration-300">
                     View Projects
                 </a>
             </div>
@@ -233,12 +231,14 @@
             { id: 8, name: 'Window Treatment Set', category: 'Textiles', description: 'Custom curtains and drapes', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop', images: ['https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&h=400&fit=crop', 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600&h=400&fit=crop'], specs: 'Material: Velvet & Silk | Custom Sizing Available | Lining: Blackout', etaProduction: '4-5 weeks', etaPrice: '3-4 days' },
         ];
 
-        let selectedCategory = 'All Products';
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        let selectedCategory = categoryParam ? decodeURIComponent(categoryParam) : 'All Products';
 
         // Render products
         function renderProducts() {
             const grid = document.getElementById('productGrid');
-            const filtered = selectedCategory === 'All Products' ? products : products.filter(p => p.category === selectedCategory);
+            const filtered = selectedCategory === 'All Products' ? products : products.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
             
             grid.innerHTML = filtered.map(product => `
                 <div class="catalogue-card bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 cursor-pointer hover:shadow-lg" onclick="openModal(${product.id})">
@@ -260,6 +260,21 @@
         const dropdownMenu = document.getElementById('dropdownMenu');
         const selectedCategorySpan = document.getElementById('selectedCategory');
         const categoryBtns = document.querySelectorAll('.category-btn');
+
+        // Set initial active state based on selectedCategory
+        selectedCategorySpan.textContent = selectedCategory;
+        categoryBtns.forEach(btn => {
+            if (btn.dataset.category.toLowerCase() === selectedCategory.toLowerCase()) {
+                btn.classList.add('text-asean-gold', 'font-semibold');
+                btn.classList.remove('text-slate-700');
+                // Sync case with the exact category name
+                selectedCategory = btn.dataset.category;
+                selectedCategorySpan.textContent = selectedCategory;
+            } else {
+                btn.classList.remove('text-asean-gold', 'font-semibold');
+                btn.classList.add('text-slate-700');
+            }
+        });
 
         filterButton.addEventListener('click', () => {
             dropdownMenu.classList.toggle('hidden');
