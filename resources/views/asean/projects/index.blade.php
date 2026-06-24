@@ -246,7 +246,7 @@
     </section>
 
     {{-- Contact CTA --}}
-    <section class="bg-[#001d39] py-20 text-center text-white px-4 sm:px-6 lg:px-8">
+    <section class="bg-asean-gold-soft py-20 text-center text-black px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-4xl">
             <h2 class="font-asean-display text-3xl font-semibold sm:text-4xl text-asean-gold">Ready to develop your retail collection?</h2>
             <p class="mt-4 text-black">
