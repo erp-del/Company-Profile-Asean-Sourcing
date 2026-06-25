@@ -24,8 +24,7 @@
     <header class="navbar fixed top-0 z-50 w-full border-b border-white/10 bg-[rgba(0,31,63,0.95)] backdrop-blur-md transition-colors duration-300">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="{{ route('excellencial.home') }}" class="group flex flex-col gap-0.5">
-                <span class="font-display text-xl font-light tracking-wide text-highlight sm:text-2xl">Excellencial</span>
-                <span class="text-[10px] font-medium uppercase tracking-[0.25em] text-slate-400">Your Eyes In Indonesia</span>
+                <img src="{{ asset('media/gateway/excolo.png') }}" alt="Excellencial" class="h-8 w-auto sm:h-10">
             </a>
 
             <nav class="flex items-center gap-4 lg:gap-6" aria-label="Primary">
@@ -60,7 +59,7 @@
         <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
             <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
                 <div class="lg:col-span-2">
-                    <p class="font-display text-2xl font-light tracking-wide text-highlight">Excellencial</p>
+                    <img src="{{ asset('media/gateway/excolo.png') }}" alt="Excellencial" class="h-8 w-auto">
                     <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-400">
                         The only Western managed, Indonesia based, third party quality management company exclusively operating in Indonesia—focused on consumer goods and retail. Independent inspection, audit, and certification services.
                     </p>

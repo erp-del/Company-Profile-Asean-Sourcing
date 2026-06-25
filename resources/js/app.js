@@ -111,6 +111,7 @@ class HeroSlider {
         this.dots = document.querySelectorAll('.slider-dot');
         this.currentSlide = 0;
         this.autoPlayInterval = null;
+        this.isTransitioning = false;
         
         if (this.slides.length > 0) {
             this.init();
@@ -129,25 +130,69 @@ class HeroSlider {
         // Pause on hover
         document.querySelector('.hero')?.addEventListener('mouseenter', () => this.stopAutoPlay());
         document.querySelector('.hero')?.addEventListener('mouseleave', () => this.startAutoPlay());
+
+        // Add touch swipe support
+        this.addTouchSupport();
+    }
+
+    addTouchSupport() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        hero.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        hero.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            this.handleSwipe(touchStartX, touchEndX);
+        }, { passive: true });
+    }
+
+    handleSwipe(startX, endX) {
+        const diff = startX - endX;
+        const threshold = 50;
+
+        if (diff > threshold) {
+            // Swipe left - next slide
+            this.nextSlide();
+        } else if (diff < -threshold) {
+            // Swipe right - previous slide
+            this.prevSlide();
+        }
     }
 
     goToSlide(n) {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+
         // Remove active class from all slides and dots
         this.slides.forEach(slide => slide.classList.remove('active'));
         this.dots.forEach(dot => dot.classList.remove('active'));
 
         // Add active class to current slide and dot
-        this.currentSlide = n % this.slides.length;
+        this.currentSlide = ((n % this.slides.length) + this.slides.length) % this.slides.length;
         this.slides[this.currentSlide].classList.add('active');
         this.dots[this.currentSlide].classList.add('active');
+
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 700);
     }
 
     nextSlide() {
         this.goToSlide(this.currentSlide + 1);
     }
 
+    prevSlide() {
+        this.goToSlide(this.currentSlide - 1);
+    }
+
     startAutoPlay() {
-        this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
+        this.autoPlayInterval = setInterval(() => this.nextSlide(), 6000);
     }
 
     stopAutoPlay() {
@@ -198,8 +243,8 @@ class MobileMenu {
 class ScrollAnimations {
     constructor() {
         this.observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         this.observer = new IntersectionObserver(
@@ -211,24 +256,45 @@ class ScrollAnimations {
     }
 
     init() {
-        const animatedElements = document.querySelectorAll(
+        // New reveal classes
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        revealElements.forEach((el) => {
+            this.observer.observe(el);
+        });
+
+        // Legacy elements for backward compatibility
+        const legacyElements = document.querySelectorAll(
             'section h2, .section-subtitle, .service-card, .team-member, .portfolio-item, ' +
             '.testimonial-card, .blog-card, .stat, .placeholder-image, .info-item, .contact-form, .industry-card'
         );
 
-        animatedElements.forEach((el) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(12px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            this.observer.observe(el);
+        legacyElements.forEach((el) => {
+            if (!el.classList.contains('reveal') && 
+                !el.classList.contains('reveal-left') && 
+                !el.classList.contains('reveal-right') && 
+                !el.classList.contains('reveal-scale')) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(12px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                this.observer.observe(el);
+            }
         });
     }
 
     handleIntersection(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                // Handle new reveal classes
+                if (entry.target.classList.contains('reveal') ||
+                    entry.target.classList.contains('reveal-left') ||
+                    entry.target.classList.contains('reveal-right') ||
+                    entry.target.classList.contains('reveal-scale')) {
+                    entry.target.classList.add('active');
+                } else {
+                    // Handle legacy inline styles
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
                 this.observer.unobserve(entry.target);
             }
         });
@@ -407,7 +473,7 @@ class ParallaxEffect {
 // ===== COUNTER ANIMATION =====
 class CounterAnimation {
     constructor() {
-        this.stats = document.querySelectorAll('.stat h3');
+        this.stats = document.querySelectorAll('.stat-number');
         this.observerOptions = {
             threshold: 0.5
         };
@@ -450,7 +516,9 @@ class CounterAnimation {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
 
-            const current = start + range * progress;
+            // Easing function for smoother animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const current = start + range * easeOutQuart;
             const floored = Math.floor(current);
             const suffix = originalText.includes('%') ? '%' : originalText.includes('+') ? '+' : '';
             element.textContent = floored + suffix;
@@ -611,6 +679,71 @@ class AccordionExclusive {
     }
 }
 
+// ===== SMOOTH ACCORDION =====
+class SmoothAccordion {
+    constructor() {
+        this.accordions = document.querySelectorAll('details.acc');
+        this.init();
+    }
+
+    init() {
+        this.accordions.forEach(acc => {
+            const summary = acc.querySelector('summary');
+            const content = acc.querySelector('.acc-content');
+            
+            if (!summary || !content) return;
+
+            // Prevent default behavior for smooth animation
+            summary.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isOpen = acc.hasAttribute('open');
+                
+                if (isOpen) {
+                    this.closeAccordion(acc, content);
+                } else {
+                    this.openAccordion(acc, content);
+                }
+            });
+        });
+    }
+
+    openAccordion(acc, content) {
+        acc.setAttribute('open', '');
+        // Force reflow
+        content.offsetHeight;
+        
+        // Get the actual height
+        const height = content.scrollHeight;
+        
+        // Animate
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        
+        requestAnimationFrame(() => {
+            content.style.maxHeight = height + 'px';
+            content.style.opacity = '1';
+        });
+        
+        // Remove max-height after animation
+        setTimeout(() => {
+            content.style.maxHeight = '1000px';
+        }, 500);
+    }
+
+    closeAccordion(acc, content) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        
+        requestAnimationFrame(() => {
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+        });
+        
+        setTimeout(() => {
+            acc.removeAttribute('open');
+        }, 500);
+    }
+}
+
 class KeyboardAccessibility {
     constructor() {
         this.init();
@@ -658,6 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new ScrollProgress();
     new BackToTop();
     new AccordionExclusive();
+    new SmoothAccordion();
     initAseanGateway();
 });
 

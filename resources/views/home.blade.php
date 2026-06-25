@@ -4,31 +4,31 @@
 {{-- Hero --}}
 <section id="hero" class="hero relative min-h-[85vh] overflow-hidden">
     <div class="hero-slider absolute inset-0">
-        <div class="hero-slide active bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1920&q=80');"></div>
-        <div class="hero-slide bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80');"></div>
-        <div class="hero-slide bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80');"></div>
+        <div class="hero-slide active bg-cover bg-center" style="background-image: url('{{ asset('media/gateway/bgimg1.png') }}');"></div>
+        <div class="hero-slide bg-cover bg-center" style="background-image: url('{{ asset('media/gateway/bgimg2.png') }}');"></div>
+        <div class="hero-slide bg-cover bg-center" style="background-image: url('{{ asset('media/gateway/bgimg3.png') }}');"></div>
     </div>
     <div class="hero-slide-overlay absolute inset-0 bg-gradient-to-t from-bg-dark via-navy/90 to-navy-dark/50"></div>
-    <div class="absolute inset-0 mesh-hero opacity-95"></div>
+    <div class="absolute inset-0  opacity-95"></div>
 
     <div class="relative z-10 mx-auto flex min-h-[85vh] max-w-7xl flex-col justify-center px-4 pb-20 pt-10 sm:px-6 lg:px-8">
-        <h1 class="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Welcome to <span class="text-gradient">Excellencial</span>
+        <h1 class="hero-content font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Welcome to <span class="text-gradient text-gradient-animated">Excellencial</span>
         </h1>
-        <p class="mt-8 max-w-3xl text-lg font-medium leading-relaxed text-slate-200 sm:text-xl">
+        <p class="hero-subtitle mt-8 max-w-3xl text-lg font-medium leading-relaxed text-slate-200 sm:text-xl">
             We are the only <strong class="text-white">Western managed, Indonesia based</strong>, third party Quality Management company exclusively operating in Indonesia and focused on <strong class="text-white">consumer goods and retail</strong>.
         </p>
-        <p class="mt-6 max-w-3xl text-base leading-relaxed text-slate-400 lg:text-lg">
-            With our strong local expertise dedicated to independent inspection, audit and certification services, we are the trusted specialists in quality solutions in Indonesia for many of the world’s leading brands and companies.
+        <p class="hero-description mt-6 max-w-3xl text-base leading-relaxed text-slate-400 lg:text-lg">
+            With our strong local expertise dedicated to independent inspection, audit and certification services, we are the trusted specialists in quality solutions in Indonesia for many of the world's leading brands and companies.
         </p>
-        <div class="cta-buttons mt-10 flex flex-wrap gap-4">
+        <div class="hero-cta cta-buttons mt-10 flex flex-wrap gap-4">
             <a href="#about"
-               class="btn btn-primary inline-flex items-center justify-center rounded border-2 border-brand bg-brand px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-brand/20 transition-all duration-200 hover:border-brand-hover hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 active:scale-95"
+               class="btn btn-primary btn-magnetic inline-flex items-center justify-center rounded border-2 border-brand bg-brand px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-brand/20 transition-all duration-200 hover:border-brand-hover hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 active:scale-95"
             >
                 Read more
             </a>
             <a href="#contact"
-               class="btn btn-secondary inline-flex items-center justify-center rounded border-2 border-highlight bg-transparent px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-highlight transition-all duration-200 hover:bg-highlight hover:text-navy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2 active:scale-95"
+               class="btn btn-secondary btn-magnetic inline-flex items-center justify-center rounded border-2 border-highlight bg-transparent px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-highlight transition-all duration-200 hover:bg-highlight hover:text-navy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2 active:scale-95"
             >
                 Book now
             </a>
@@ -59,20 +59,20 @@
 {{-- Stats --}}
 <section class="border-y border-white/10 bg-navy/40">
     <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-8">
-        <div class="stat text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="font-display text-4xl font-semibold text-white">15<span class="text-highlight">+</span></h3>
+        <div class="stat reveal animate-delay-100 text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="stat-number font-display text-4xl font-semibold text-white">15<span class="text-highlight">+</span></h3>
             <p class="mt-1 text-sm text-slate-400">Years supporting brands in Indonesia</p>
         </div>
-        <div class="stat text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="font-display text-4xl font-semibold text-white">100<span class="text-highlight">%</span></h3>
+        <div class="stat reveal animate-delay-200 text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="stat-number font-display text-4xl font-semibold text-white">100<span class="text-highlight">%</span></h3>
             <p class="mt-1 text-sm text-slate-400">Indonesia-only operations &amp; coverage</p>
         </div>
-        <div class="stat text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="font-display text-4xl font-semibold text-white">3rd</h3>
+        <div class="stat reveal animate-delay-300 text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="stat-number font-display text-4xl font-semibold text-white">3rd</h3>
             <p class="mt-1 text-sm text-slate-400">Party independence—your specification, our report</p>
         </div>
-        <div class="stat text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="font-display text-4xl font-semibold text-white">QC</h3>
+        <div class="stat reveal animate-delay-400 text-center lg:text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="stat-number font-display text-4xl font-semibold text-white">QC</h3>
             <p class="mt-1 text-sm text-slate-400">Inspections, audits &amp; certification support</p>
         </div>
     </div>
@@ -83,11 +83,11 @@
     <div class="absolute inset-0 grid-pattern opacity-30"></div>
     <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div class="grid items-center gap-14 lg:grid-cols-2">
-            <div>
+            <div class="reveal-left">
                 <p class="text-xs font-semibold uppercase tracking-widest text-highlight">Why Excellencial?</p>
-                <h2 class="font-display mt-3 text-3xl font-semibold text-white sm:text-4xl">Western-managed rigour, Indonesian execution</h2>
+                <h2 class="section-title font-display mt-3 text-3xl font-semibold text-white sm:text-4xl">Western-managed rigour, Indonesian execution</h2>
                 <p class="mt-6 text-lg leading-relaxed text-slate-400">
-                    We combine international reporting standards with deep factory knowledge across Java, Bali, and beyond. Whether you need pre-production clarity, inline control, or pre-shipment release—our teams work on site at your suppliers’ facilities.
+                    We combine international reporting standards with deep factory knowledge across Java, Bali, and beyond. Whether you need pre-production clarity, inline control, or pre-shipment release—our teams work on site at your suppliers' facilities.
                 </p>
                 <ul class="mt-8 space-y-4 text-slate-300">
                     <li class="flex gap-3"><span class="mt-1 text-highlight">✓</span> Independent inspectors and auditors—no factory affiliation</li>
@@ -96,9 +96,9 @@
                 </ul>
             </div>
             <a href="#contact"
-               class="interactive-card block relative overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2"
+               class="reveal-right img-zoom-container interactive-card block relative overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2"
             >
-                <div class="absolute inset-0 bg-cover bg-center transition duration-700 ease-out hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80');"></div>
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80');"></div>
                 <div class="absolute inset-0 bg-gradient-to-tr from-navy-dark/90 via-navy/40 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6">
                     <p class="text-sm font-medium text-white">Inspections · Audits · Certification support</p>
@@ -112,26 +112,26 @@
 <section id="services" class="scroll-mt-24 border-t border-white/10 bg-navy-dark/30">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div class="grid gap-8 lg:grid-cols-2">
-            <article class="interactive-card block flex flex-col rounded-2xl border-white/10 p-8 lg:p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
+            <article class="reveal animate-delay-100 interactive-card block flex flex-col rounded-2xl border-white/10 bg-slate-800/50 p-8 lg:p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-gold">Audits</p>
                 <h2 class="font-display mt-4 text-2xl font-semibold text-white sm:text-3xl">Factory &amp; compliance audits</h2>
                 <p class="mt-4 flex-1 text-slate-400">
-                    Our independent auditors in Indonesia visit your supplier’s facilities to evaluate manufacturing capacities, systems, and social compliance—so you can qualify partners with evidence, not assumptions.
+                    Our independent auditors in Indonesia visit your supplier's facilities to evaluate manufacturing capacities, systems, and social compliance—so you can qualify partners with evidence, not assumptions.
                 </p>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="#audits-list"
-                       class="btn btn-sm btn-primary inline-flex rounded border border-brand bg-brand px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-200 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 active:scale-95"
+                       class="btn btn-sm btn-primary btn-magnetic inline-flex rounded border border-brand bg-brand px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-200 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 active:scale-95"
                     >
                         Read more
                     </a>
                     <a href="#contact"
-                       class="btn btn-sm btn-secondary inline-flex rounded border-2 border-highlight px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-highlight transition-all duration-200 hover:bg-highlight hover:text-navy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2 active:scale-95"
+                       class="btn btn-sm btn-secondary btn-magnetic inline-flex rounded border-2 border-highlight px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-highlight transition-all duration-200 hover:bg-highlight hover:text-navy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2 active:scale-95"
                     >
                         Book now
                     </a>
                 </div>
             </article>
-            <article class="interactive-card block flex flex-col rounded-2xl border-white/10 p-8 lg:p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
+            <article class="reveal animate-delay-200 interactive-card block flex flex-col rounded-2xl border-white/10 bg-slate-800/50 p-8 lg:p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-gold">Inspections</p>
                 <h2 class="font-display mt-4 text-2xl font-semibold text-white sm:text-3xl">On-site production inspections</h2>
                 <p class="mt-4 flex-1 text-slate-400">
@@ -139,12 +139,12 @@
                 </p>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="#inspections-list"
-                       class="btn btn-sm btn-primary inline-flex rounded border border-brand bg-brand px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-200 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 active:scale-95"
+                       class="btn btn-sm btn-primary btn-magnetic inline-flex rounded border border-brand bg-brand px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-200 hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 active:scale-95"
                     >
                         Read more
                     </a>
                     <a href="#contact"
-                       class="btn btn-sm btn-secondary inline-flex rounded border-2 border-highlight px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-highlight transition-all duration-200 hover:bg-highlight hover:text-navy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2 active:scale-95"
+                       class="btn btn-sm btn-secondary btn-magnetic inline-flex rounded border-2 border-highlight px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-highlight transition-all duration-200 hover:bg-highlight hover:text-navy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2 active:scale-95"
                     >
                         Book now
                     </a>
@@ -154,52 +154,60 @@
 
         <div class="mt-16 grid gap-10 lg:grid-cols-2">
             <div id="inspections-list">
-                <h3 class="font-display text-xl font-semibold text-white">Inspection services</h3>
-                <p class="mt-2 text-sm text-slate-500">Tap to expand — same structure as excellencial.com</p>
-                <div class="mt-6 space-y-2">
-                    @foreach ([
-                        ['Pre-production Inspection', 'Validate materials, workmanship intent, and readiness before bulk.'],
-                        ['Initial Production Inspection', 'First-run verification against your approved sample and spec.'],
-                        ['During Production Inspection', 'Inline checks while the line is running to catch drift early.'],
-                        ['Pre-shipment Inspection', 'Statistical sampling and functional checks prior to release.'],
-                        ['Container Loading Supervision', 'Witness loading, carton counts, and condition at dispatch.'],
-                        ['Production Monitoring', 'Resident or periodic oversight for critical programs.'],
-                        ['Defective Product Sorting', 'On-site segregation and rework supervision when needed.'],
-                    ] as $row)
-                        <details class="acc group rounded-xl border border-white/10 bg-navy/30 open:border-highlight/40 open:bg-navy/50 transition-all duration-300 hover:border-highlight/30 hover:bg-navy/40">
-                            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-white transition-all duration-200 hover:text-highlight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-highlight/50">
-                                {{ $row[0] }}
-                                <span class="acc-icon text-highlight transition-transform duration-200 group-open:-rotate-180">▼</span>
-                            </summary>
-                            <div class="border-t border-white/5 px-4 pb-4 pt-0 text-sm text-slate-400">
-                                {{ $row[1] }}
-                            </div>
-                        </details>
-                    @endforeach
-                </div>
+                <details class="acc group rounded-xl border border-white/10 bg-navy/30 open:border-highlight/40 open:bg-navy/50 transition-all duration-300 hover:border-highlight/30 hover:bg-navy/40">
+                    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left text-lg font-semibold text-white transition-all duration-200 hover:text-highlight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-highlight/50">
+                        <div>
+                            <h3 class="font-display text-xl font-semibold text-white">Inspection services</h3>
+                            <p class="mt-1 text-sm text-slate-500">Tap to expand — same structure as excellencial.com</p>
+                        </div>
+                        <span class="acc-icon text-highlight transition-transform duration-300 group-open:-rotate-180">▼</span>
+                    </summary>
+                    <div class="acc-content border-t border-white/5 px-6 pb-6 pt-4">
+                        <div class="space-y-3">
+                            @foreach ([
+                                ['Pre-production Inspection', 'Validate materials, workmanship intent, and readiness before bulk.'],
+                                ['Initial Production Inspection', 'First-run verification against your approved sample and spec.'],
+                                ['During Production Inspection', 'Inline checks while the line is running to catch drift early.'],
+                                ['Pre-shipment Inspection', 'Statistical sampling and functional checks prior to release.'],
+                                ['Container Loading Supervision', 'Witness loading, carton counts, and condition at dispatch.'],
+                                ['Production Monitoring', 'Resident or periodic oversight for critical programs.'],
+                                ['Defective Product Sorting', 'On-site segregation and rework supervision when needed.'],
+                            ] as $row)
+                                <div class="rounded-lg border border-white/5 bg-navy-dark/30 p-4 transition-all duration-200 hover:border-white/10 hover:bg-navy-dark/50">
+                                    <p class="font-semibold text-white">{{ $row[0] }}</p>
+                                    <p class="mt-1 text-sm text-slate-400">{{ $row[1] }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </details>
             </div>
             <div id="audits-list">
-                <h3 class="font-display text-xl font-semibold text-white">Audit programs</h3>
-                <p class="mt-2 text-sm text-slate-500">Structured assessments and follow-up</p>
-                <div class="mt-6 space-y-2">
-                    @foreach ([
-                        ['Simple Factory Audit', 'Focused capability snapshot for new or smaller suppliers.'],
-                        ['Extensive Factory Audit', 'Deep dive across quality systems, capacity, and documentation.'],
-                        ['Social Audit', 'Ethical and workplace criteria aligned to your checklist.'],
-                        ['Corrective Action Audit', 'Verify closure of prior findings with evidence.'],
-                        ['Follow Up Audit', 'Scheduled re-checks to sustain performance.'],
-                    ] as $row)
-                        <details class="acc group rounded-xl border border-white/10 bg-navy/30 open:border-highlight/40 open:bg-navy/50 transition-all duration-300 hover:border-highlight/30 hover:bg-navy/40">
-                            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-white transition-all duration-200 hover:text-highlight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-highlight/50">
-                                {{ $row[0] }}
-                                <span class="acc-icon text-highlight transition-transform duration-200 group-open:-rotate-180">▼</span>
-                            </summary>
-                            <div class="border-t border-white/5 px-4 pb-4 pt-0 text-sm text-slate-400">
-                                {{ $row[1] }}
-                            </div>
-                        </details>
-                    @endforeach
-                </div>
+                <details class="acc group rounded-xl border border-white/10 bg-navy/30 open:border-highlight/40 open:bg-navy/50 transition-all duration-300 hover:border-highlight/30 hover:bg-navy/40">
+                    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left text-lg font-semibold text-white transition-all duration-200 hover:text-highlight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-highlight/50">
+                        <div>
+                            <h3 class="font-display text-xl font-semibold text-white">Audit programs</h3>
+                            <p class="mt-1 text-sm text-slate-500">Structured assessments and follow-up</p>
+                        </div>
+                        <span class="acc-icon text-highlight transition-transform duration-300 group-open:-rotate-180">▼</span>
+                    </summary>
+                    <div class="acc-content border-t border-white/5 px-6 pb-6 pt-4">
+                        <div class="space-y-3">
+                            @foreach ([
+                                ['Simple Factory Audit', 'Focused capability snapshot for new or smaller suppliers.'],
+                                ['Extensive Factory Audit', 'Deep dive across quality systems, capacity, and documentation.'],
+                                ['Social Audit', 'Ethical and workplace criteria aligned to your checklist.'],
+                                ['Corrective Action Audit', 'Verify closure of prior findings with evidence.'],
+                                ['Follow Up Audit', 'Scheduled re-checks to sustain performance.'],
+                            ] as $row)
+                                <div class="rounded-lg border border-white/5 bg-navy-dark/30 p-4 transition-all duration-200 hover:border-white/10 hover:bg-navy-dark/50">
+                                    <p class="font-semibold text-white">{{ $row[0] }}</p>
+                                    <p class="mt-1 text-sm text-slate-400">{{ $row[1] }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </details>
             </div>
         </div>
 
@@ -229,7 +237,7 @@
 {{-- Industries --}}
 <section id="industries" class="scroll-mt-24 border-t border-white/10">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <h2 class="font-display text-center text-3xl font-semibold text-white sm:text-4xl">Covered industry</h2>
+        <h2 class="section-title reveal font-display text-center text-3xl font-semibold text-white sm:text-4xl">Covered industry</h2>
         <p class="section-subtitle mx-auto mt-4 max-w-2xl text-center text-lg text-slate-400">Specialist quality programs for furniture and home décor—extendable to wider consumer goods.</p>
         <div class="mt-14 grid gap-8 md:grid-cols-2">
             <a href="#contact"
@@ -261,7 +269,7 @@
 {{-- Coverage --}}
 <section id="coverage" class="scroll-mt-24 border-t border-white/10 bg-navy-dark/25">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <h2 class="font-display text-3xl font-semibold text-white sm:text-4xl">Main coverage areas</h2>
+        <h2 class="section-title reveal font-display text-3xl font-semibold text-white sm:text-4xl">Main coverage areas</h2>
         <p class="section-subtitle mt-4 text-lg text-slate-400">Bali and Java offices—field teams across Indonesia’s manufacturing regions.</p>
         <div class="mt-12 grid gap-10 lg:grid-cols-2">
             <div class="coverage-map-wrapper interactive-card overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/40 transition-all duration-300 hover:shadow-2xl hover:shadow-black/50 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
@@ -298,17 +306,16 @@
 {{-- Team --}}
 <section id="team" class="scroll-mt-24 border-t border-white/10">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <h2 class="font-display text-3xl font-semibold text-white sm:text-4xl">Our team</h2>
+        <h2 class="section-title reveal font-display text-3xl font-semibold text-white sm:text-4xl">Our team</h2>
         <p class="section-subtitle mt-4 text-lg text-slate-400">Western leadership with Indonesian inspection and audit specialists in the field.</p>
-        <div class="team-grid mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="team-grid mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 align-center">
             @foreach ([
-                ['Budi Santoso', 'Chief Quality Officer', 'Program design & client governance', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop'],
-                ['Siti Nurhaliza', 'Head of Operations', 'Inspector scheduling & reporting', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop'],
-                ['Ahmad Wijaya', 'Lead Auditor', 'Factory audits & CAPA follow-up', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop'],
-                ['Dewi Lestari', 'Client relations', 'Booking, scope alignment & updates', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop'],
-            ] as $m)
-                <div class="team-member interactive-card block overflow-hidden rounded-2xl border border-white/10 bg-navy/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
-                    <div class="member-image aspect-[4/5] bg-cover bg-center transition duration-500 hover:scale-105" style="background-image: url('{{ $m[3] }}');"></div>
+                ['Emeric Beyeler', 'CEO & Founder', 'French native Emeric Beyeler is the Founder & CEO of Excellencial, an Indonesia-based company bridging European quality with Asian manufacturing for global FF&E/OS&E procurement.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop'],
+                ['Citra Maharani', 'Bussines Development Manager', 'Business Development drives scalable growth by integrating marketing, sales, and merchandising to manage client acquisition and project alignment.', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop'],
+                ['Syahirul', 'Operations Manager', 'The Operations Department ensures that every project moves from confirmation to delivery with control and discipline.', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop'],
+            ] as $index => $m)
+                <div class="team-member reveal animate-delay-{{ $index * 100 }} img-zoom-container interactive-card block overflow-hidden rounded-2xl border border-white/10 bg-navy/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
+                    <div class="member-image aspect-[4/5] bg-cover bg-center" style="background-image: url('{{ $m[3] }}');"></div>
                     <div class="p-5">
                         <h3 class="font-display text-lg font-semibold text-white">{{ $m[0] }}</h3>
                         <p class="role text-xs font-semibold uppercase tracking-wider text-highlight">{{ $m[1] }}</p>
@@ -323,10 +330,16 @@
 {{-- Clients strip --}}
 <section id="clients" class="scroll-mt-24 border-t border-white/10 bg-navy/30">
     <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-500">Trusted by leading brands &amp; importers</p>
+        <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-500">Trusted by our clients</p>
         <div class="mt-8 overflow-hidden border-y border-white/5 py-6 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-            <div class="flex w-max animate-marquee gap-20 text-sm font-semibold uppercase tracking-widest text-slate-500">
-                <span>Retail</span><span>Furniture</span><span>Home décor</span><span>E‑commerce</span><span>Hospitality supply</span><span>Wholesale</span><span>Retail</span><span>Furniture</span><span>Home décor</span><span>E‑commerce</span><span>Hospitality supply</span><span>Wholesale</span>
+            <div class="flex w-max animate-marquee gap-20">
+                @foreach (range(1, 9) as $i)
+                    <img src="{{ asset('media/gateway/cli' . $i . '.png') }}" alt="Client Logo {{ $i }}" class="h-8 w-auto object-contain opacity-60 transition-opacity hover:opacity-100">
+                @endforeach
+                {{-- Duplicate for seamless loop --}}
+                @foreach (range(1, 9) as $i)
+                    <img src="{{ asset('media/gateway/cli' . $i . '.png') }}" alt="Client Logo {{ $i }}" class="h-8 w-auto object-contain opacity-60 transition-opacity hover:opacity-100">
+                @endforeach
             </div>
         </div>
     </div>
@@ -335,7 +348,7 @@
 {{-- Testimonials --}}
 <section id="testimonials" class="scroll-mt-24 border-t border-white/10 bg-gradient-to-b from-navy-dark/50 to-bg-dark">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <h2 class="font-display text-center text-3xl font-semibold text-white sm:text-4xl">Client feedback</h2>
+        <h2 class="section-title reveal font-display text-center text-3xl font-semibold text-white sm:text-4xl">Client feedback</h2>
         <div class="testimonials-grid mt-12 grid gap-6 md:grid-cols-3">
             <figure class="testimonial-card interactive-card block glass rounded-2xl border-white/10 p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
                 <div class="stars text-gold" aria-hidden="true">★★★★★</div>
@@ -368,7 +381,7 @@
 {{-- FAQ --}}
 <section id="faq" class="scroll-mt-24 border-t border-white/10">
     <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <h2 class="font-display text-center text-3xl font-semibold text-white">Frequently asked questions</h2>
+        <h2 class="section-title reveal font-display text-center text-3xl font-semibold text-white">Frequently asked questions</h2>
         <div class="mt-10 space-y-2">
             @foreach ([
                 ['How quickly can you attend a factory?', 'Typical lead times depend on location and scope. Share your address, SKU count, and inspection type—we confirm availability within one business day.'],
@@ -377,7 +390,7 @@
             ] as $faq)
                 <details class="acc rounded-xl border border-white/10 bg-navy/30 open:border-highlight/40 transition-all duration-300 hover:border-highlight/30 hover:bg-navy/40">
                     <summary class="cursor-pointer list-none px-5 py-4 text-left text-sm font-semibold text-white transition-all duration-200 hover:text-highlight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-highlight/50">{{ $faq[0] }}</summary>
-                    <div class="border-t border-white/5 px-5 pb-4 text-sm text-slate-400">{{ $faq[1] }}</div>
+                    <div class="acc-content border-t border-white/5 px-5 pb-4 text-sm text-slate-400">{{ $faq[1] }}</div>
                 </details>
             @endforeach
         </div>
@@ -390,7 +403,7 @@
         <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
                 <p class="text-xs font-semibold uppercase tracking-widest text-highlight">News &amp; resources</p>
-                <h2 class="font-display mt-2 text-3xl font-semibold text-white sm:text-4xl">Blog</h2>
+                <h2 class="section-title reveal font-display mt-2 text-3xl font-semibold text-white sm:text-4xl">Blog</h2>
                 <p class="section-subtitle mt-3 max-w-xl text-slate-400">Practical articles on inspections, audits, and importing from Indonesia—aligned with topics on excellencial.com.</p>
             </div>
             <a href="{{ route('articles.index') }}"
@@ -400,14 +413,14 @@
             </a>
         </div>
         <div class="blog-grid mt-12 grid gap-6 md:grid-cols-3">
-            @foreach (collect(config('articles'))->sortByDesc('published_at')->take(3) as $a)
-                <article class="blog-card interactive-card block flex flex-col rounded-2xl border border-white/10 bg-navy-dark/40 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
+            @foreach (collect(config('articles'))->sortByDesc('published_at')->take(3) as $index => $a)
+                <article class="blog-card reveal animate-delay-{{ $index * 100 }} interactive-card block flex flex-col rounded-2xl border border-white/10 bg-navy-dark/40 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/50 focus-visible:ring-offset-2">
                     <p class="text-xs font-semibold uppercase tracking-wider text-highlight">{{ $a['category'] }}</p>
                     <h3 class="mt-3 font-display text-lg font-semibold text-white">{{ $a['title'] }}</h3>
                     <p class="date mt-2 text-xs text-slate-500">{{ \Illuminate\Support\Carbon::parse($a['published_at'])->format('F j, Y') }}</p>
                     <p class="excerpt mt-3 flex-1 text-sm text-slate-400">{{ $a['excerpt'] }}</p>
                     <a href="{{ route('articles.show', $a['slug']) }}"
-                       class="service-link block mt-6 text-sm font-semibold text-highlight transition-all duration-200 hover:text-white"
+                       class="service-link link-underline block mt-6 text-sm font-semibold text-highlight transition-all duration-200 hover:text-white"
                     >
                         Read more →
                     </a>
@@ -420,7 +433,7 @@
 {{-- Contact --}}
 <section id="contact" class="scroll-mt-24 border-t border-white/10 bg-navy-dark/40">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <h2 class="font-display text-3xl font-semibold text-white sm:text-4xl">Contact us</h2>
+        <h2 class="section-title reveal font-display text-3xl font-semibold text-white sm:text-4xl">Contact us</h2>
         <p class="section-subtitle mt-4 text-lg text-slate-400">Request a booking or ask a technical question—we typically respond within one business day.</p>
         <div class="contact-grid mt-12 grid gap-12 lg:grid-cols-2">
             <div class="contact-info space-y-4 text-slate-300">
